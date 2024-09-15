@@ -22,15 +22,18 @@ CREATE TABLE IF NOT EXISTS jugadores (
 )
 ''')
 
+
 # Función para agregar un equipo
 def agregar_equipo(nombre):
     c.execute('INSERT INTO equipos (nombre) VALUES (?)', (nombre,))
     conn.commit()
 
+
 # Función para agregar un jugador
 def agregar_jugador(nombre, edad, id_equipo):
     c.execute('INSERT INTO jugadores (nombre, edad, id_equipo) VALUES (?, ?, ?)', (nombre, edad, id_equipo))
     conn.commit()
+
 
 # Función para listar todos los jugadores y equipos
 def listar_jugadores_y_equipos():
@@ -40,6 +43,7 @@ def listar_jugadores_y_equipos():
     LEFT JOIN equipos ON jugadores.id_equipo = equipos.id
     ''')
     return c.fetchall()
+
 
 # Ejemplo de uso
 agregar_equipo('Equipo A')
